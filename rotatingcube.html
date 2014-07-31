@@ -84,8 +84,39 @@
 
         var timer = 0.0001 * Date.now();
 
-				camera.position.x += ( mouseX - camera.position.x ) * .001;
-				camera.position.y += ( - mouseY - camera.position.y ) * .001;
+				// Bounds check / keep the block inside
+
+				if ( (camera.position.y >= ( -window.innerHeight / 7 ))
+					&& (camera.position.y <= (  window.innerHeight / 7 )) ) {
+					camera.position.y += ( -mouseY - camera.position.y ) * .001;
+				}
+
+				if ( (camera.position.y >= ( -window.innerHeight / 7 ))
+					&& ( -mouseY < -window.innerHeight / 7 ) ) {
+					camera.position.y += ( -mouseY - camera.position.y ) * .001;
+				}
+
+				if ( (camera.position.y <= ( window.innerHeight / 7 ))
+					&& ( -mouseY > window.innerHeight / 7 ) ) {
+					camera.position.y += ( -mouseY - camera.position.y ) * .001;
+				}
+
+				if ( (camera.position.x >= ( -window.innerWidth / 5 ))
+					&& (camera.position.x <= (  window.innerWidth / 5 )) ) {
+					camera.position.x += ( mouseX - camera.position.x ) * .001;
+				}
+
+				if ( ( camera.position.x >= ( -window.innerWidth / 5 ))
+					&& ( mouseX < -window.innerWidth / 5 ) ) {
+					camera.position.x += ( mouseX - camera.position.x ) * .001;
+				}
+
+				if ( ( camera.position.x <= ( window.innerWidth / 5 ))
+					&& ( mouseX > -window.innerWidth / 5 ) ) {
+					camera.position.x += ( mouseX - camera.position.x ) * .001;
+				}
+
+				// End bounds check
 
       	mesh.rotation.x += 0.05;
 				mesh.rotation.y += 0.05;
